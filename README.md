@@ -2,7 +2,7 @@
 
 **Avaliação de Desenvolvimento Backend Júnior em .NET**
 
-Este projeto foi desenvolvido como parte de uma avaliação prática para a vaga de Desenvolvedor Backend Júnior. O objetivo é demonstrar proficiência em tecnologias e boas práticas de desenvolvimento web com .NET 8, além de ir além dos requisitos propostos no teste.
+Este projeto foi desenvolvido como parte de uma avaliação prática para a vaga de Desenvolvedor Backend. O objetivo é demonstrar proficiência em tecnologias e boas práticas de desenvolvimento web com .NET 8, além de ir além dos requisitos propostos no teste e requisitos "não obrigatórios".
 
 ---
 
