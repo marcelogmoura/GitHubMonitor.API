@@ -10,6 +10,14 @@ Este projeto foi desenvolvido como parte de uma avaliação prática para a vaga
 
 A **GitHubMonitor API** é uma API RESTful robusta e escalável, construída em **ASP.NET Core 8.0**. Sua principal funcionalidade é integrar-se com a **API pública do GitHub**, permitindo a busca de repositórios por nome de usuário e a persistência dessas informações em um banco de dados **MongoDB**.
 
+Este projeto se destaca por:
+
+* ✅ **Integração segura com APIs externas:** Conecta-se à API pública do GitHub para buscar e processar dados de repositórios.
+* ✅ **Persistência de dados eficiente:** Armazena informações relevantes em um banco de dados moderno (MongoDB).
+* ✅ **Segurança robusta:** Implementa **autenticação e autorização com JWT**.
+* ✅ **Qualidade de código:** É totalmente testável com **testes de integração** que garantem a estabilidade da aplicação.
+* ✅ **Boas práticas de arquitetura:** Segue padrões como **Clean Architecture** e **DDD**, garantindo um código limpo e de fácil manutenção.
+
 Além de atender aos requisitos básicos da avaliação, a solução demonstra conhecimento em:
 
 * **Arquitetura e Padrões de Design:** Utiliza **Clean Architecture** e **DDD** para separar responsabilidades.
@@ -41,6 +49,12 @@ O projeto está organizado em quatro camadas, seguindo o padrão de **Clean Arch
 * `GitHubMonitor.Domain/` (Camada de Domínio): Onde se encontra a **lógica de negócio**, entidades, DTOs e validações, independente das tecnologias de infraestrutura.
 * `GitHubMonitor.Infra.Data/` (Camada de Infraestrutura): Responsável pela **persistência dos dados**, contendo a implementação dos repositórios para o **MongoDB**.
 * `GitHubMonitor.Tests/` (Camada de Testes): Contém os **testes de integração** que validam o fluxo completo da aplicação.
+
+├── GitHubMonitor.API/                   # API RESTful, controllers e configurações
+├── GitHubMonitor.Domain/                # Lógica de negócio, entidades e DTOs
+├── GitHubMonitor.Infra.Data/            # Repositórios e contexto do MongoDB
+├── GitHubMonitor.Tests/                 # Testes de integração
+└── docker-compose.yml                   # Orquestração do ambiente com Docke
 
 ---
 
@@ -122,3 +136,13 @@ O projeto inclui testes de integração para validar as funcionalidades de ponta
 **Execute os testes:**
 
 No Visual Studio, vá para `Teste > Gerenciador de Testes` e clique em **"Executar Todos os Testes"**.
+
+---
+
+**Autor:** Marcelo Moura
+
+**Contato:**  
+
+📧 **Email:** mgmoura@gmail.com  
+
+🔗 **LinkedIn:** https://www.linkedin.com/in/marcelogmoura/
