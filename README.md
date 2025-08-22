@@ -101,10 +101,11 @@ Cole o token obtido no formato Bearer SEU_TOKEN_AQUI.
 
 Agora, você pode acessar o endpoint GET /api/GitHub/{username}.
 
-🧪 Testes de Integração
-O projeto inclui testes de integração para validar as funcionalidades de ponta a ponta.
+### 🧪 Testes de Integração
 
-https://files.fm/u/5ecy4h79zk
+![Resultado dos Testes de Integração](https://i.postimg.cc/VNzLfWS9/test.jpg)
+
+O projeto inclui testes de integração para validar as funcionalidades de ponta a ponta.
 
 Execute os testes:
 
