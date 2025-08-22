@@ -1,15 +1,27 @@
-var builder = WebApplication.CreateBuilder(args);
+// Adicione os using's para as nossas camadas
+using GitHubMonitor.API.Settings;
+using GitHubMonitor.Domain.Interfaces.Repositories;
+using GitHubMonitor.Domain.Interfaces.Services;
+using GitHubMonitor.Domain.Services;
+using GitHubMonitor.Infra.Data.Contexts;
+using GitHubMonitor.Infra.Data.Repositories;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient();
+
+builder.Services.AddScoped<IGitHubService, GitHubService>();
+builder.Services.AddScoped<IRepositoryRepository, RepositoryRepository>();
+
+builder.Services.AddSingleton<MongoDbContext>(new MongoDbContext(mongoDBSettings.ConnectionString, mongoDBSettings.DatabaseName));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +29,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
