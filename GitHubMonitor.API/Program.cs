@@ -1,4 +1,3 @@
-// Adicione os using's para as nossas camadas
 using GitHubMonitor.API.Settings;
 using GitHubMonitor.Domain.Interfaces.Repositories;
 using GitHubMonitor.Domain.Interfaces.Services;
@@ -18,7 +17,8 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IGitHubService, GitHubService>();
 builder.Services.AddScoped<IRepositoryRepository, RepositoryRepository>();
 
-builder.Services.AddSingleton<MongoDbContext>(new MongoDbContext(mongoDBSettings.ConnectionString, mongoDBSettings.DatabaseName));
+builder.Services.AddSingleton<MongoDbContext>(_ => new MongoDbContext(mongoDBSettings.ConnectionString ?? string.Empty, mongoDBSettings.DatabaseName ?? string.Empty));
+
 
 var app = builder.Build();
 
