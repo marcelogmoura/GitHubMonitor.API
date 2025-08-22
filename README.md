@@ -50,11 +50,12 @@ O projeto está organizado em quatro camadas, seguindo o padrão de **Clean Arch
 * `GitHubMonitor.Infra.Data/` (Camada de Infraestrutura): Responsável pela **persistência dos dados**, contendo a implementação dos repositórios para o **MongoDB**.
 * `GitHubMonitor.Tests/` (Camada de Testes): Contém os **testes de integração** que validam o fluxo completo da aplicação.
 
+.
 ├── GitHubMonitor.API/                   # API RESTful, controllers e configurações
 ├── GitHubMonitor.Domain/                # Lógica de negócio, entidades e DTOs
 ├── GitHubMonitor.Infra.Data/            # Repositórios e contexto do MongoDB
 ├── GitHubMonitor.Tests/                 # Testes de integração
-└── docker-compose.yml                   # Orquestração do ambiente com Docke
+└── docker-compose.yml                   # Orquestração do ambiente com Docker
 
 ---
 
