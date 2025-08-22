@@ -1,3 +1,4 @@
+// Adicione os namespaces necessários
 using GitHubMonitor.API.Settings;
 using GitHubMonitor.Domain.Interfaces.Repositories;
 using GitHubMonitor.Domain.Interfaces.Services;
@@ -7,25 +8,38 @@ using GitHubMonitor.Infra.Data.Repositories;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// **NOVA LINHA:** Registra o serializador do Guid como a primeira coisa
+// Configuração de serialização do Guid para evitar o erro "GuidRepresentation is Unspecified"
 BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
-
-// Adiciona a configuração do MongoDB lendo do appsettings.json
 var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("sua-chave-secreta-de-pelo-menos-16-caracteres")), // Substitua pela sua chave secreta
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+builder.Services.AddAuthorization();
+
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IGitHubService, GitHubService>();
 builder.Services.AddScoped<IRepositoryRepository, RepositoryRepository>();
 builder.Services.AddSingleton<MongoDbContext>(_ => new MongoDbContext(mongoDBSettings.ConnectionString ?? string.Empty, mongoDBSettings.DatabaseName ?? string.Empty));
-
 
 var app = builder.Build();
 
@@ -36,6 +50,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();

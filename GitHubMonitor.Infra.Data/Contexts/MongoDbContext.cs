@@ -19,5 +19,7 @@ namespace GitHubMonitor.Infra.Data.Contexts
 
         public IMongoCollection<Repository> Repositories => _database.GetCollection<Repository>("repositories");
         public IMongoCollection<Owner> Owners => _database.GetCollection<Owner>("owners");
+
+        public IMongoCollection<User> Users => _database.GetCollection<User>("users");
     }
 }
