@@ -11,7 +11,7 @@ using MongoDB.Bson.Serialization.Serializers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models; // Adicione este using
+using Microsoft.OpenApi.Models; 
 using GitHubMonitor.Infra.Data.Fakes;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +22,7 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard
 var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 
 builder.Services.AddControllers();
+builder.Services.AddRouting(map => { map.LowercaseUrls = true; });
 builder.Services.AddEndpointsApiExplorer();
 
 // Adiciona a configuração do Swagger com JWT
@@ -91,3 +92,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+public partial class Program { }
