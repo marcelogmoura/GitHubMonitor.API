@@ -1,9 +1,11 @@
 ﻿using GitHubMonitor.Domain.Dtos;
 using GitHubMonitor.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GitHubMonitor.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class GitHubController : ControllerBase
