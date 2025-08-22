@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GitHubMonitor.Domain\GitHubMonitor.Domain.csproj" />
+    <ProjectReference Include="..\GitHubMonitor.Infra.Data\GitHubMonitor.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
