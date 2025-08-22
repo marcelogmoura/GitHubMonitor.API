@@ -11,16 +11,47 @@ using MongoDB.Bson.Serialization.Serializers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models; // Adicione este using
+using GitHubMonitor.Infra.Data.Fakes;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração de serialização do Guid para evitar o erro "GuidRepresentation is Unspecified"
 BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
 var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Adiciona a configuração do Swagger com JWT
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "GitHubMonitor API", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Por favor, insira um token JWT válido",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -28,7 +59,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("sua-chave-secreta-de-pelo-menos-16-caracteres")), // Substitua pela sua chave secreta
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("33c45774-436c-43ec-a2e0-457b88b00a01")),
             ValidateIssuer = false,
             ValidateAudience = false
         };
@@ -37,8 +68,11 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddHttpClient();
 
+// Registra as dependências dos serviços e repositórios
 builder.Services.AddScoped<IGitHubService, GitHubService>();
 builder.Services.AddScoped<IRepositoryRepository, RepositoryRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
 builder.Services.AddSingleton<MongoDbContext>(_ => new MongoDbContext(mongoDBSettings.ConnectionString ?? string.Empty, mongoDBSettings.DatabaseName ?? string.Empty));
 
 var app = builder.Build();
@@ -51,6 +85,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Adicione os middlewares de autenticação e autorização
 app.UseAuthentication();
 app.UseAuthorization();
 
