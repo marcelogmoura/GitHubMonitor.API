@@ -104,6 +104,8 @@ Agora, você pode acessar o endpoint GET /api/GitHub/{username}.
 🧪 Testes de Integração
 O projeto inclui testes de integração para validar as funcionalidades de ponta a ponta.
 
+https://files.fm/u/5ecy4h79zk
+
 Execute os testes:
 
 No Visual Studio, vá para Teste > Gerenciador de Testes.
