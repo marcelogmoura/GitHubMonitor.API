@@ -1,0 +1,48 @@
+# Arquivos de Build
+# Ignora binários e arquivos intermediários gerados pelo build.
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.log
+[Ll]og/
+
+# Ferramentas de Teste
+# Ignora arquivos gerados por ferramentas de teste como o ReSharper.
+_ReSharper.*/
+[Tt]est[Rr]esults/
+
+# Pacotes do .NET
+# Ignora a pasta de pacotes NuGet e a pasta .nuget (cache).
+[Pp]ackages/
+.nuget/
+.vs/
+
+# Arquivos do Visual Studio
+# Ignora arquivos e pastas específicas do Visual Studio.
+.vs/
+*.vsidx
+*.suo
+*.user
+*.pdb
+*.pidb
+*.vshost.*
+*.csproj.user
+*.sln.docstates
+
+# Arquivos de Cache do Visual Studio Code
+# Ignora a pasta de cache do VS Code, se você a usar.
+.vscode/
+
+# Arquivos Temporários e de Configuração
+# Ignora arquivos de configuração de usuário, arquivos de cache, etc.
+*.tmp
+*.temp
+*~
+*.bak
+*.old
+
+# Padrões de Sistemas Operacionais
+# Ignora arquivos de sistema do macOS e Windows.
+.DS_Store
+Thumbs.db
