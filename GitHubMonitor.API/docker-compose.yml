@@ -11,5 +11,19 @@
     volumes:
       - mongodb_data:/data/db
 
+  githubmonitorapi:
+    build:
+      context: .
+      dockerfile: GitHubMonitor.API/Dockerfile
+    container_name: githubmonitor_api_container
+    ports:
+      - "5144:80"
+    depends_on:
+      - mongodb
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      MongoDBSettings__ConnectionString: "mongodb://root:root@mongodb:27017"
+      MongoDBSettings__DatabaseName: "GitHubMonitorDB"
+    
 volumes:
   mongodb_data:
