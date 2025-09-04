@@ -68,7 +68,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
 1.  **Clone o Repositório:**
 
     ```bash
-    git clone [URL-DO-SEU-REPOSITORIO]
+    git clone [[URL-DO-SEU-REPOSITORIO]](https://github.com/marcelogmoura/GitHubMonitor.API)
     cd [pasta-do-projeto]
     ```
 
