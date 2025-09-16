@@ -1,31 +1,33 @@
-// Adicione os namespaces necessários
 using GitHubMonitor.API.Settings;
 using GitHubMonitor.Domain.Interfaces.Repositories;
+using GitHubMonitor.Domain.Interfaces.Security;
 using GitHubMonitor.Domain.Interfaces.Services;
+using GitHubMonitor.Domain.Security;
 using GitHubMonitor.Domain.Services;
+using GitHubMonitor.Domain.Settings;
 using GitHubMonitor.Infra.Data.Contexts;
+using GitHubMonitor.Infra.Data.Fakes;
 using GitHubMonitor.Infra.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models; 
-using GitHubMonitor.Infra.Data.Fakes;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração de serialização do Guid para evitar o erro "GuidRepresentation is Unspecified"
+// Configuração de serialização do Guid
 BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 
 var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
 builder.Services.AddControllers();
 builder.Services.AddRouting(map => { map.LowercaseUrls = true; });
 builder.Services.AddEndpointsApiExplorer();
-
-// Adiciona a configuração do Swagger com JWT
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "GitHubMonitor API", Version = "v1" });
@@ -60,20 +62,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("33c45774-436c-43ec-a2e0-457b88b00a01")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
             ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateAudience = false,
+            ClockSkew = TimeSpan.Zero
         };
     });
-builder.Services.AddAuthorization();
 
+builder.Services.AddAuthorization();
 builder.Services.AddHttpClient();
 
-// Registra as dependências dos serviços e repositórios
 builder.Services.AddScoped<IGitHubService, GitHubService>();
 builder.Services.AddScoped<IRepositoryRepository, RepositoryRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
 builder.Services.AddSingleton<MongoDbContext>(_ => new MongoDbContext(mongoDBSettings.ConnectionString ?? string.Empty, mongoDBSettings.DatabaseName ?? string.Empty));
 
 var app = builder.Build();
@@ -85,12 +89,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// Adicione os middlewares de autenticação e autorização
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 app.Run();
-
 public partial class Program { }

@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.0.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+	  <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Interfaces\Security\" />
   </ItemGroup>
 
