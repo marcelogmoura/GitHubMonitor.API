@@ -28,7 +28,7 @@ namespace GitHubMonitor.Domain.Services
         {
             var githubUrl = $"https://api.github.com/users/{username}/repos";
 
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "request");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "GitHubMonitor-App-v1.0");
 
             var response = await _httpClient.GetAsync(githubUrl);
 
