@@ -30,6 +30,7 @@ Além de atender aos requisitos básicos da avaliação, a solução demonstra c
 
 * **Linguagem:** C# 12
 * **Framework:** ASP.NET Core 8.0
+* **Documentação:** [https://docs.github.com/en/rest](https://docs.github.com/en/rest)
 * **Banco de Dados:** MongoDB
 * **Contêineres:** Docker e Docker Compose
 * **Padrões de Arquitetura:** Clean Architecture / Domain-Driven Design (DDD)
@@ -67,7 +68,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
 1.  **Clone o Repositório:**
 
     ```bash
-    git clone [URL-DO-SEU-REPOSITORIO]
+    git clone [https://github.com/marcelogmoura/GitHubMonitor.API]
     cd [pasta-do-projeto]
     ```
 
