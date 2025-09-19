@@ -57,7 +57,7 @@ O projeto está organizado em quatro camadas, seguindo o padrão de **Clean Arch
 
 ### ▶️ Instruções de Configuração e Execução
 
-Para rodar o projeto localmente, siga os passos abaixo:
+O projeto está configurado para ser executado facilmente com Docker Compose.
 
 #### Pré-requisitos
 * [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -72,30 +72,39 @@ Para rodar o projeto localmente, siga os passos abaixo:
     cd [pasta-do-projeto]
     ```
 
-2.  **Inicie o Contêiner do MongoDB:**
+2.  **Execute a Aplicação com Docker Compose:**
 
-    Navegue até a raiz da sua solução (onde o arquivo `docker-compose.yml` está localizado) e execute:
+    Navegue até a pasta `GitHubMonitor.API/` e execute o seguinte comando para construir as imagens e iniciar os contêineres da API e do MongoDB:
 
     ```bash
-    docker-compose up -d
+    docker-compose up --build
     ```
 
-3.  **Configurações da API:**
+    Isso iniciará a API na porta `5144` e o MongoDB na porta `27017`.
 
-    No arquivo `appsettings.Development.json` do projeto `GitHubMonitor.API`, configure a string de conexão para o seu banco de dados local:
+3.  **Acesse a Documentação da API:**
 
-    ```json
-    "MongoDBSettings": {
-      "ConnectionString": "mongodb://root:root@localhost:27017",
-      "DatabaseName": "GitHubMonitorDB"
-    }
-    ```
-
-4.  **Execute a Aplicação:**
-
-    Abra a solução no Visual Studio e execute o projeto `GitHubMonitor.API`. O **Swagger UI** será aberto no navegador.
+    Acesse a interface do Swagger no seu navegador: `https://localhost:7168/swagger` ou `http://localhost:5144/swagger`.
 
 ---
+
+### 🖥️ Status e Persistência de Dados
+
+Após executar o `docker-compose up`, você pode verificar o status dos contêineres e a persistência dos dados.
+
+#### Contêineres em Execução
+
+Verifique se os serviços da API (`githubmonitor-api`) e do banco de dados (`githubmonitor-mongo`) estão rodando corretamente.
+
+![Contêineres Docker em Execução](https://i.postimg.cc/jSvvNZnT/Screenshot-7.jpg)
+
+#### Dados Persistidos no MongoDB
+
+Após buscar um usuário através da API, os dados são persistidos na coleção `github-users` do MongoDB, como pode ser visto no MongoDB Compass.
+
+![Dados Persistidos no MongoDB Compass](https://i.postimg.cc/DwhY1SCr/Screenshot-6.jpg)
+
+
 
 ### 🔑 Autenticação e Autorização
 
@@ -138,8 +147,6 @@ No Visual Studio, vá para `Teste > Gerenciador de Testes` e clique em **"Execut
 
 **Autor:** Marcelo Moura
 
-**Contato:**  
-
-📧 **Email:** mgmoura@gmail.com  
-
+**Contato:** 📧 **Email:** mgmoura@gmail.com  
+**GitHub:** [https://github.com/marcelogmoura](https://github.com/marcelogmoura)
 🔗 **LinkedIn:** https://www.linkedin.com/in/marcelogmoura/
