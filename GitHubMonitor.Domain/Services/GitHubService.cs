@@ -1,15 +1,10 @@
-﻿using GitHubMonitor.Domain.Dtos;
+﻿using FluentValidation;
+using GitHubMonitor.Domain.Dtos;
 using GitHubMonitor.Domain.Entities;
 using GitHubMonitor.Domain.Interfaces.Repositories;
 using GitHubMonitor.Domain.Interfaces.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using FluentValidation;
 using GitHubMonitor.Domain.Validations;
-using System;
+using System.Text.Json;
 
 namespace GitHubMonitor.Domain.Services
 {

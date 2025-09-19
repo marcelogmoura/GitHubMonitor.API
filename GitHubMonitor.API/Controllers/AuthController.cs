@@ -1,6 +1,5 @@
 ﻿using GitHubMonitor.Domain.Dtos;
 using GitHubMonitor.Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GitHubMonitor.API.Controllers
@@ -11,7 +10,6 @@ namespace GitHubMonitor.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-
         public AuthController(IAuthService authService)
         {
             _authService = authService;

@@ -68,7 +68,7 @@ O projeto está configurado para ser executado facilmente com Docker Compose.
 1.  **Clone o Repositório:**
 
     ```bash
-    git clone [URL-DO-SEU-REPOSITORIO]
+    git clone [https://github.com/marcelogmoura/GitHubMonitor.API]
     cd [pasta-do-projeto]
     ```
 
@@ -87,6 +87,24 @@ O projeto está configurado para ser executado facilmente com Docker Compose.
     Acesse a interface do Swagger no seu navegador: `https://localhost:7168/swagger` ou `http://localhost:5144/swagger`.
 
 ---
+
+### 🖥️ Status e Persistência de Dados
+
+Após executar o `docker-compose up`, você pode verificar o status dos contêineres e a persistência dos dados.
+
+#### Contêineres em Execução
+
+Verifique se os serviços da API (`githubmonitor-api`) e do banco de dados (`githubmonitor-mongo`) estão rodando corretamente.
+
+![Contêineres Docker em Execução](https://i.postimg.cc/jSvvNZnT/Screenshot-7.jpg)
+
+#### Dados Persistidos no MongoDB
+
+Após buscar um usuário através da API, os dados são persistidos na coleção `github-users` do MongoDB, como pode ser visto no MongoDB Compass.
+
+![Dados Persistidos no MongoDB Compass](https://i.postimg.cc/DwhY1SCr/Screenshot-6.jpg)
+
+
 
 ### 🔑 Autenticação e Autorização
 

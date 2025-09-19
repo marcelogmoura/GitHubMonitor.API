@@ -31,7 +31,7 @@ namespace GitHubMonitor.Infra.Data.Repositories
 
         public async Task<List<Repository>?> GetAll()
         {
-            return await _context.Repositories.Find(_ => true).ToListAsync();
+            return await _context.Repositories.Find(x => true).ToListAsync();
         }
 
         public async Task<Repository?> GetById(Guid id)

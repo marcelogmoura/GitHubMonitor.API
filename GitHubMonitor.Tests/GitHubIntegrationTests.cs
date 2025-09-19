@@ -1,5 +1,4 @@
-﻿using Bogus;
-using FluentAssertions;
+﻿using FluentAssertions;
 using GitHubMonitor.Domain.Dtos;
 using GitHubMonitor.Domain.Entities;
 using GitHubMonitor.Domain.Interfaces.Repositories;
@@ -7,7 +6,6 @@ using GitHubMonitor.Infra.Data.Fakes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 using Xunit;
