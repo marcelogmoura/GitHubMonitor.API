@@ -152,8 +152,8 @@ No Visual Studio, vá para `Teste > Gerenciador de Testes` e clique em **"Execut
 
 ---
 
-👨‍💻 **Autor:** Marcelo Moura
+👨‍💻 **Autor:** Marcelo Moura 
 
-📧 **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com)
-🐱 **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura)
-🔗 **LinkedIn:** [linkedin.com/in/marcelogmoura](https://www.linkedin.com/in/marcelogmoura/)
+📧 **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com) 
+🐱 **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura) 
+🔗 **LinkedIn:** [linkedin.com/in/marcelogmoura](https://www.linkedin.com/in/marcelogmoura/) 
