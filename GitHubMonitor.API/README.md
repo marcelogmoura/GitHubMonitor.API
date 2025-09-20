@@ -2,7 +2,13 @@
 
 **Avaliação de Desenvolvimento Backend Júnior em .NET**
 
-Este projeto foi desenvolvido como parte de uma avaliação prática para a vaga de Desenvolvedor Backend. O objetivo é demonstrar proficiência em tecnologias e boas práticas de desenvolvimento web com .NET 8, além de ir além dos requisitos propostos no teste e requisitos "não obrigatórios".
+Este projeto foi desenvolvido como parte de uma avaliação prática para a vaga de Desenvolvedor Backend. O objetivo é demonstrar proficiência em tecnologias e boas práticas de desenvolvimento web com .NET 8, e de ir além dos requisitos propostos no teste e requisitos "não obrigatórios".
+
+Além desta API, foi desenvolvido um projeto front-end para consumir e exibir os dados disponível em: 
+
+**[GitHubMonitor_front](https://github.com/marcelogmoura/GitHubMonitor_front)**. 
+
+Este front-end não era um requisito da avaliação e foi criado posteriormente para complementar a solução e demonstrar uma integração completa.
 
 ---
 
@@ -143,10 +149,11 @@ O projeto inclui testes de integração para validar as funcionalidades de ponta
 
 No Visual Studio, vá para `Teste > Gerenciador de Testes` e clique em **"Executar Todos os Testes"**.
 
+
 ---
 
-**Autor:** Marcelo Moura
+👨‍💻 **Autor:** Marcelo Moura
 
-**Contato:** 📧 **Email:** mgmoura@gmail.com  
-**GitHub:** [https://github.com/marcelogmoura](https://github.com/marcelogmoura)
-🔗 **LinkedIn:** https://www.linkedin.com/in/marcelogmoura/
+📧 **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com)  
+🐱 **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura)  
+🔗 **LinkedIn:** [linkedin.com/in/marcelogmoura](https://www.linkedin.com/in/marcelogmoura/)  
