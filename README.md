@@ -12,6 +12,12 @@ Este front-end não era um requisito da avaliação e foi criado posteriormente 
 
 ---
 
+## 📋 Requisitos e Documentação
+
+Os requisitos completos do teste técnico (prova) estão detalhados no documento oficial:
+* **[Backend Developer Coding Assessment.pdf](https://github.com/marcelogmoura/GitHubMonitor.API/blob/main/Pdf/Backend%20Developer%20Coding%20Assessment.pdf)**
+
+
 ### 📝 Visão Geral do Projeto
 
 A **GitHubMonitor API** é uma API RESTful robusta e escalável, construída em **ASP.NET Core 8.0**. Sua principal funcionalidade é integrar-se com a **API pública do GitHub**, permitindo a busca de repositórios por nome de usuário e a persistência dessas informações em um banco de dados **MongoDB**.
